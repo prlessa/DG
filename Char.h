@@ -11,7 +11,7 @@ public:
     Char ( );    
     Char( string );
     Char(string, int, int, int, int, int, int);
-
+    ~Char();
     Char( const Char & );
     void setCharName( string );
 
@@ -20,7 +20,7 @@ public:
 
     string getCharName( ) const;
     
-    void status( const Char & ) ;
+    void status() ;
     void print( Char );
     void printNameAlt() const;
     void printInventory() const;
@@ -49,9 +49,15 @@ public:
     
     //END Character Stats
     
-    
-    
     string getPreName() const;
+
+    //ptr metodos
+
+    void printSpellsBar() const;
+    void alocarSpellsBar(int);
+    void cadastrarRegInSpellsBar(int);
+
+
 private:
 
     string charName;
@@ -77,6 +83,10 @@ private:
     int wisdom;
     int charisma;
 
+    //atributos ptr spell bar
+    int spellsBarSize;
+    int *spellsBarPtr;
+    int nextEntrieInSpellsBar;
 };
 
 #endif // GRADEBOOK_H

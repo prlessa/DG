@@ -1,11 +1,13 @@
 #include "Char.h"
 
 #include <iostream>
+#include <math.h>
 using std::cout;
 
 bool Char::mainHand = false;
 bool Char::offHand = false;
 const bool Char:: FULL = false;
+int nextEntrieInSpellsBar = 0;
 Char::Char( string name ): 
 strength(0), 
 dexterity(0), 
@@ -45,6 +47,16 @@ Char::Char( const Char& other )
     this->wisdom = other.wisdom;
     this->charisma = other.charisma;
 
+    //copia ptr no construtor
+    this->spellsBarSize = other.spellsBarSize;
+    this->nextEntrieInSpellsBar = other.nextEntrieInSpellsBar;
+    this->spellsBarPtr = new int[this->spellsBarSize];
+    for(int i = 0; i < nextEntrieInSpellsBar; i++)
+        this->spellsBarPtr[i] = spellsBarPtr[i];
+}
+
+Char::~Char(){
+    delete [] spellsBarPtr;
 }
 
 //no futuro sera adicionado um Tipo Item 
@@ -208,7 +220,7 @@ void Char::printInventory() const
 
 
 }
-void Char::status( const Char& c )
+void Char::status()
 {
     cout << "Nome: " << getCharName() << '\n';
     cout << " STR: " << getStrength() << " DEX: " << getDexterity() << " CON:  " 
@@ -217,3 +229,42 @@ void Char::status( const Char& c )
     cout << "Inventario: " << "(" << inventoryUsed << "/" << MAXSIZEINVENTORY << ")" << '\n';
 }
 
+//Implementacoes do ptr
+void Char::cadastrarRegInSpellsBar(int barSize)
+{
+    if(nextEntrieInSpellsBar < spellsBarSize){
+        spellsBarPtr[nextEntrieInSpellsBar++] = barSize;
+        return;
+    }
+    if(spellsBarSize == 0){
+        spellsBarSize = 1;
+        spellsBarPtr = new int[spellsBarSize];
+        spellsBarPtr[nextEntrieInSpellsBar++] = barSize;
+        return;
+    }
+    alocarSpellsBar(barSize);
+}
+
+void Char::alocarSpellsBar(int barSize)
+{
+    int *spellsBarTemp = new int[spellsBarSize];
+    for(int i = 0; i < nextEntrieInSpellsBar; i++)
+        spellsBarTemp[i] = spellsBarPtr[i];
+
+    delete [] spellsBarPtr;
+
+    spellsBarSize += int(ceil(spellsBarSize*0.5)); //AUMENTA A MEMORIA EM 50%
+    int *spellsBarPtr = new int[spellsBarSize];
+    for(int i = 0; i < nextEntrieInSpellsBar; i++)
+        spellsBarPtr[i] = spellsBarTemp[ i ];
+    spellsBarPtr[nextEntrieInSpellsBar++] = barSize;
+
+    delete[] spellsBarTemp;
+    
+}
+
+void Char:: printSpellsBar() const
+{
+    for(int i = 0; i < nextEntrieInSpellsBar; i++ )
+    cout << spellsBarPtr[i] << '\n';
+}

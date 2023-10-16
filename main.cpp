@@ -38,10 +38,13 @@ int main()
 
    Char newChar3("Pipo");
 
-   newChar.status(newChar3);
+   newChar.status();
    
    newChar.addItem(15);
-   newChar.status(newChar);
+   newChar.status();
    newChar.getInventoryUsed();
-   return 0;
+   
+   Char *newCharPtr;
+   newCharPtr = new Char("Palindromo", 15, 10, 12, 8, 10, 15);
+   newCharPtr->status();
 }
