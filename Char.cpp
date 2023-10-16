@@ -6,8 +6,6 @@ using std::cout;
 bool Char::mainHand = false;
 bool Char::offHand = false;
 const bool Char:: FULL = false;
-int Char::inventorySize = 0;
-
 Char::Char( string name ): 
 strength(0), 
 dexterity(0), 
@@ -49,16 +47,22 @@ Char::Char( const Char& other )
 
 }
 
+//no futuro sera adicionado um Tipo Item 
 int Char::addItem(int item)
 {
-    if(inventorySize < MAXSIZEINVENTORY )
+    if(inventoryUsed < INVENTORYSIZE )
     {
-        inventorySize = item;
-        return inventorySize;
+        for(int i = 1; i < INVENTORYSIZE; i++)
+        if(INVENTORYSIZE == NULL)
+        {
+        this-> inventory[i] = item;
+        this->inventoryUsed++;
+        } 
+        
 
     }
-
-    if(inventorySize = MAXSIZEINVENTORY)
+//Checa se o inventario esta cheio e retorna true caso esteja
+    if(inventoryUsed == INVENTORYSIZE)
     {
         cout << "O inventario esta cheio" << '\n';
         return FULL == true;
@@ -197,12 +201,19 @@ void Char::printNameAlt() const
     cout << "Nome anterior: "<< getPreName() <<"\nNovo nome: "  << getCharName() << '\n';
 }
 
+void Char::printInventory() const
+{
+    for( int i = 0; i < INVENTORYSIZE; i++ )
+        cout << this->inventory[ i ] << '\n';
+
+
+}
 void Char::status( const Char& c )
 {
     cout << "Nome: " << getCharName() << '\n';
     cout << " STR: " << getStrength() << " DEX: " << getDexterity() << " CON:  " 
           << getConstitution() << " INT: " << getIntelligence() << " WIS " << getWisdom() 
           << " CHA: " << getCharisma() << '\n';
-    cout << "Inventario: " << "(" << inventorySize << "/" << MAXSIZEINVENTORY << ")" << '\n';
+    cout << "Inventario: " << "(" << inventoryUsed << "/" << MAXSIZEINVENTORY << ")" << '\n';
 }
 

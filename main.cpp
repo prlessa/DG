@@ -42,6 +42,6 @@ int main()
    
    newChar.addItem(15);
    newChar.status(newChar);
-  
+   newChar.getInventoryUsed();
    return 0;
 }

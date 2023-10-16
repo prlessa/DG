@@ -16,14 +16,14 @@ public:
     void setCharName( string );
 
     //Check inventory 
-    inline int getInventoryUsed() const { return inventorySize; };
+    inline int getInventoryUsed() const { return inventoryUsed; };
 
     string getCharName( ) const;
     
     void status( const Char & ) ;
     void print( Char );
     void printNameAlt() const;
-    
+    void printInventory() const;
     int getDamage();
     
     //Character Stats
@@ -59,8 +59,11 @@ private:
     const int MAXSIZEINVENTORY;
     const int MAXSIZENAME;
     
+    //array const static 
+    int inventoryUsed;
+    const static int INVENTORYSIZE = 40;
+    int inventory[INVENTORYSIZE];
     
-    static int inventorySize;
     const static bool FULL;
 
     static bool mainHand;
