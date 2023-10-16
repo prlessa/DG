@@ -11,7 +11,7 @@ using std::cout;
 
 int main()
 {
-   Sword ritualSword( "Tumulo do lobo" );
+   /* Sword ritualSword( "Tumulo do lobo" );
    Sword ritualSword2( "Corta franja" );
    //Sword ritualSword3("");
    ritualSword2.setDexterity(48);
@@ -32,7 +32,7 @@ int main()
    Shield BaronShield("Porta dos Ceus");
    BaronShield.print();
    BaronShield.getPreName();
-
+   */
    Char newChar("Paul", 10,9,8,12,15,17);
    Char newChar2("Neo", 10,9,8,7,6,5);
 
@@ -40,11 +40,24 @@ int main()
 
    newChar.status();
    
-   newChar.addItem(15);
+   newChar.addItem(16);
+   newChar.addItem(12);
    newChar.status();
    newChar.getInventoryUsed();
    
    Char *newCharPtr;
    newCharPtr = new Char("Palindromo", 15, 10, 12, 8, 10, 15);
    newCharPtr->status();
+   delete newCharPtr;
+   newCharPtr = 0;
+
+   newCharPtr = new Char(newChar2);
+   newCharPtr->status();
+   /*
+   newCharPtr->cadastrarRegInSpellsBar(5);
+   newCharPtr->alocarSpellsBar(10);
+   newCharPtr->printSpellsBar();*/
+   delete newCharPtr;
+   
+   return 0;
 }

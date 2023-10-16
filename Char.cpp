@@ -8,6 +8,8 @@ bool Char::mainHand = false;
 bool Char::offHand = false;
 const bool Char:: FULL = false;
 int nextEntrieInSpellsBar = 0;
+
+
 Char::Char( string name ): 
 strength(0), 
 dexterity(0), 
@@ -17,13 +19,18 @@ wisdom(0),
 charisma(0), 
 MAXSIZEINVENTORY(40), MAXSIZENAME(12)
 {
+   spellsBarSize = 0;
+   spellsBarPtr = 0;
    setCharName( name );
    cout << "Inicializando Char no constructor.\n";
 
 }
 
-Char::Char(string name, int strength, int dexterity, int constitution, int intelligence, int wisdom, int charisma): MAXSIZEINVENTORY(40), MAXSIZENAME(12)
+Char::Char(string name, int strength, int dexterity, int constitution, int intelligence, int wisdom, int charisma): MAXSIZEINVENTORY(40), MAXSIZENAME(12),
+spellsBarSize(10)
 {
+    spellsBarSize = 0;
+    spellsBarPtr = 0;
     setCharName(name);
     this->strength  = strength;
     this->dexterity = dexterity;
@@ -65,13 +72,12 @@ int Char::addItem(int item)
     if(inventoryUsed < INVENTORYSIZE )
     {
         for(int i = 1; i < INVENTORYSIZE; i++)
-        if(INVENTORYSIZE == NULL)
+        if(inventory[i] == NULL)
         {
         this-> inventory[i] = item;
-        this->inventoryUsed++;
-        } 
         
-
+        }   
+        this->inventoryUsed++;
     }
 //Checa se o inventario esta cheio e retorna true caso esteja
     if(inventoryUsed == INVENTORYSIZE)
@@ -266,5 +272,5 @@ void Char::alocarSpellsBar(int barSize)
 void Char:: printSpellsBar() const
 {
     for(int i = 0; i < nextEntrieInSpellsBar; i++ )
-    cout << spellsBarPtr[i] << '\n';
-}
+    cout << "ta lendo?" << spellsBarPtr[i] << '\n';
+    }

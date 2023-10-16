@@ -12,7 +12,7 @@ public:
     Char( string );
     Char(string, int, int, int, int, int, int);
     ~Char();
-    Char( const Char & );
+    Char( const Char & );   
     void setCharName( string );
 
     //Check inventory 
@@ -66,7 +66,7 @@ private:
     const int MAXSIZENAME;
     
     //array const static 
-    int inventoryUsed;
+    int inventoryUsed = 0;
     const static int INVENTORYSIZE = 40;
     int inventory[INVENTORYSIZE];
     
